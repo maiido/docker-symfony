@@ -21,6 +21,9 @@ services:
         volumes:
             - ./symfony:/var/www/symfony:cached
             - ./logs/symfony:/var/www/symfony/var/log:cached
+            # try to improve speed
+            #- /var/www/symfony/var/cache
+            #- /var/www/symfony/vendor
         depends_on: 
             - db
         networks:
