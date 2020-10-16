@@ -27,6 +27,7 @@ services:
             #- /var/www/symfony/vendor
             - "var:/var/www/app/var"
             - "vendor:/var/www/app/vendor"
+            - "./reducce:/var/www/reducce/:cached"
         depends_on: 
             - db
         networks:
