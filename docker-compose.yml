@@ -14,7 +14,7 @@ services:
         networks:
             - db
     php:
-        container_name: php-fpm
+        container_name: php-fpm2
         build: ./php-fpm
         ports:
             - "9000:9001"
@@ -22,10 +22,12 @@ services:
             - "nginx:symfony.localhost"
         volumes:
             - ./symfony:/var/www/symfony:cached
-            - ./logs/symfony:/var/www/symfony/var/log:cached
+            #- ./logs/symfony:/var/www/symfony/var/log:cached
             # try to improve speed
             #- /var/www/symfony/var/cache
             #- /var/www/symfony/vendor
+            - "var:/var/www/app/var"
+            - "vendor:/var/www/app/vendor"
         depends_on: 
             - db
         networks:
@@ -82,3 +84,8 @@ networks:
     db:
     php:
     # elk_stack:
+
+volumes:
+    var:
+    vendor:
+          

@@ -50,4 +50,12 @@ COPY symfony.pool.conf /etc/php7/php-fpm.d/
 CMD ["php-fpm7", "-F"]
 
 WORKDIR /var/www/symfony
+
+RUN mkdir /var/www/app/{var,vendor}
+
+COPY setup-symfony.sh /var/www/setup-symfony.sh
+
+VOLUME /var/www/app/var
+VOLUME /var/www/app/vendor
+
 EXPOSE 9001
