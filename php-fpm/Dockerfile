@@ -47,6 +47,8 @@ COPY xdebug.ini  /etc/php7/conf.d/
 
 COPY symfony.pool.conf /etc/php7/php-fpm.d/
 
+RUN sed -i '/memory_limit = 128M/c\memory_limit = 1024M' /etc/php7/php.ini
+
 CMD ["php-fpm7", "-F"]
 
 WORKDIR /var/www/symfony
