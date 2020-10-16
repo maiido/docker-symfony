@@ -14,7 +14,7 @@ services:
         networks:
             - db
     php:
-        container_name: php-fpm2
+        container_name: php-fpm
         build: ./php-fpm
         ports:
             - "9000:9001"
