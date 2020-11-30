@@ -82,3 +82,23 @@ You are free to use the code in this repository under the terms of the 0-clause 
 # Add symfony.localhost in hosts php
 
 172.19.0.3      symfony.localhost
+
+# si problème de réseau, pas de communication entre les dockers
+https://github.com/docker/for-linux/issues/957
+
+fast workaround
+```bash
+sudo nano /etc/firewalld/firewalld.conf
+```
+in config file change
+```bash
+FirewallBackend=nftables
+```
+on
+```bash
+FirewallBackend=iptables
+```
+save change and reload firewalld
+```bash
+sudo systemctl restart firewalld.service
+```
