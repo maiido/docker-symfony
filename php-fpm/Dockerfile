@@ -55,6 +55,8 @@ CMD ["php-fpm7", "-F"]
 
 WORKDIR /var/www/symfony
 
+RUN mkdir /var/www/app/
+
 RUN mkdir /var/www/app/{var,vendor}
 
 COPY setup-symfony.sh /var/www/setup-symfony.sh
