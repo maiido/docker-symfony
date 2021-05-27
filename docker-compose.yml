@@ -21,14 +21,15 @@ services:
         external_links:
             - "nginx:symfony.localhost"
         volumes:
-            - ./symfony:/var/www/symfony:cached
+            - ./symfony/src:/var/www/symfony:cached
             # try to improve speed
             #- /var/www/symfony/var/cache
             #- /var/www/symfony/vendor
-            - "var:/var/www/app/var"
+            - "php_cache:/var/www/app/var/cache"
+            - "php_logs:/var/www/app/var/logs"
             - "vendor:/var/www/app/vendor"
             - "./reducce:/var/www/reducce/:cached"
-        depends_on: 
+        depends_on:
             - db
         networks:
             - db
@@ -38,13 +39,13 @@ services:
         build: ./nginx
         ports:
             - "80:80"
-        depends_on: 
+        depends_on:
             - php
         networks:
             - php
         volumes:
             - ./logs/nginx:/var/log/nginx:cached
-            - ./symfony:/var/www/symfony:cached
+            - ./symfony/src:/var/www/symfony:cached
     # elasticsearch:
     #     container_name: elasticsearch
     #     image: docker.elastic.co/elasticsearch/elasticsearch:7.4.2
@@ -59,7 +60,7 @@ services:
     # logstash:
     #     container_name: logstash
     #     image: docker.elastic.co/logstash/logstash:7.4.2
-    #     depends_on: 
+    #     depends_on:
     #         - elasticsearch
     #     volumes:
     #         - ./elk/logstash/pipelines.yml:/usr/share/logstash/config/pipelines.yml:cached
@@ -70,7 +71,7 @@ services:
     #         - elk_stack
     # kibana:
     #     container_name: kibana
-    #     depends_on: 
+    #     depends_on:
     #         - elasticsearch
     #     image: docker.elastic.co/kibana/kibana:7.4.2
     #     environment:
@@ -86,6 +87,6 @@ networks:
     # elk_stack:
 
 volumes:
-    var:
+    php_cache:
+    php_logs:
     vendor:
-          
