@@ -36,7 +36,8 @@ RUN apk add --update --no-cache \
     make \
     curl \
     git \
-    nano
+    nano \
+    npm
 
 RUN echo "$(curl -sS https://composer.github.io/installer.sig) -" > composer-setup.php.sig \
         && curl -sS https://getcomposer.org/installer | tee composer-setup.php | sha384sum -c composer-setup.php.sig \
